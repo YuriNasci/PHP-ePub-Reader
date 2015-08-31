@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') or exit('No direct script access allowed');
+//defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * ePub Reader class
@@ -8,6 +8,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @package	CodeIgniter
  * @subpackage	Libraries
  * @author      Tristan Siebers
+ * @colaborator Yuri Nascimento
  * @link	n/a
  * @license     LGPL
  * @version     0.1.0
@@ -32,11 +33,20 @@ class Readepub {
     /**
      * Holds all the found DC elements in the OPF file
      * @var array All found DC elements in the OPF file
+	 *
+	 * {PT} Mantém todos as elementos da metadata encontrados no arquivo .opf
+     * @var $dcElements: array enumerado unidemensional com todos os elementos <dc> encontra-
+     * dos no arquivo .opf
+     * Ex: $dcElments['title']
      */
     var $dcElements;
     /**
      * Holds all the manifest items of the OPF file
      * @var array All manifest items
+	 *
+     * {PT} Mantém todos os itens de manifest do arquivo OPF
+     * @var $manisfest array bidimensional com todos os items de manifest
+     * Ex: $manifest['id']['href']
      */
     var $manifest;
     /**
@@ -50,7 +60,7 @@ class Readepub {
      */
     var $toc;
 
-    public function init($ebookDir) {
+    function Readepub($ebookDir) {
         $this->ebookDir = $ebookDir;
         
         $this->_getOPF();
